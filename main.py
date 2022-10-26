@@ -17,6 +17,7 @@ def factorize(*number):
 
 
 if __name__ == '__main__':
+
     # test main thread python
     timer = time()
     a, b, c, d = factorize(128, 255, 99999, 10651060)
@@ -32,7 +33,7 @@ if __name__ == '__main__':
     print(f'Test 1 process done in {time() - timer_1:.3f} seconds')
     sleep(1)
 
-    # test with threading in 4 threads
+    # test threading in 4 threads
     timer_2 = time()
     threads = []
     for _ in range(4):
@@ -43,21 +44,21 @@ if __name__ == '__main__':
     print(f'Test with threading in 4 threads done in {time() - timer_2:.3f} seconds')
     sleep(1)
 
-    # test with TreadPoolExecutor with 4 threads
+    # test TreadPoolExecutor with 4 threads
     timer_3 = time()
     with ThreadPoolExecutor(max_workers=4) as executor:
         executor.map(factorize, (128, 255, 99999, 10651060))
     print(f'Test with TreadPoolExecutor with 4 threads done in {time() - timer_3:.3f} seconds')
     sleep(1)
 
-    # test with ProcessPoolExecutor with 4 processes
+    # test ProcessPoolExecutor with 4 processes
     timer_4 = time()
     with ProcessPoolExecutor(max_workers=4) as executor:
         executor.map(factorize, (128, 255, 99999, 10651060))
     print(f'Test with ProcessPoolExecutor with 4 processes done in {time() - timer_4:.3f} seconds')
     sleep(1)
 
-    # test with Pool with 4 processes
+    # test Pool with 4 processes
     timer_5 = time()
     with Pool(4) as pool:
         pool.map(factorize, (128, 255, 99999, 10651060))
