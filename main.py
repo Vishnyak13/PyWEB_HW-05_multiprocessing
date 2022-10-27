@@ -23,7 +23,7 @@ if __name__ == '__main__':
     a, b, c, d = factorize(128, 255, 99999, 10651060)
     print(a, b, c, d, sep='\n')
     print(f'Main thread python done in {time() - timer:.3f} seconds')
-    sleep(1)
+    sleep(0.5)
 
     # test with 1 process
     timer_1 = time()
@@ -31,7 +31,7 @@ if __name__ == '__main__':
     p.start()
     p.join()
     print(f'Test 1 process done in {time() - timer_1:.3f} seconds')
-    sleep(1)
+    sleep(0.5)
 
     # test threading in 4 threads
     timer_2 = time()
@@ -41,27 +41,27 @@ if __name__ == '__main__':
         threads.append(thread)
         thread.start()
     [thread.join() for thread in threads]
-    print(f'Test with threading in 4 threads done in {time() - timer_2:.3f} seconds')
-    sleep(1)
+    print(f'Test threading in 4 threads done in {time() - timer_2:.3f} seconds')
+    sleep(0.5)
 
     # test TreadPoolExecutor with 4 threads
     timer_3 = time()
     with ThreadPoolExecutor(max_workers=4) as executor:
         executor.map(factorize, (128, 255, 99999, 10651060))
-    print(f'Test with TreadPoolExecutor with 4 threads done in {time() - timer_3:.3f} seconds')
-    sleep(1)
+    print(f'Test TreadPoolExecutor with 4 threads done in {time() - timer_3:.3f} seconds')
+    sleep(0.5)
 
     # test ProcessPoolExecutor with 4 processes
     timer_4 = time()
     with ProcessPoolExecutor(max_workers=4) as executor:
         executor.map(factorize, (128, 255, 99999, 10651060))
-    print(f'Test with ProcessPoolExecutor with 4 processes done in {time() - timer_4:.3f} seconds')
-    sleep(1)
+    print(f'Test ProcessPoolExecutor with 4 processes done in {time() - timer_4:.3f} seconds')
+    sleep(0.5)
 
     # test Pool with 4 processes
     timer_5 = time()
     with Pool(4) as pool:
         pool.map(factorize, (128, 255, 99999, 10651060))
-    print(f'Test with Pool with 4 processes done in {time() - timer_5:.3f} seconds')
+    print(f'Test Pool with 4 processes done in {time() - timer_5:.3f} seconds')
 
 
